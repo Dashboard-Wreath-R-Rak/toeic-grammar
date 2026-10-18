@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>แผนผังแกรมมาร์ TOEIC</title>
+<meta name="description" content="สรุปแกรมมาร์ TOEIC 9 หมวด 141 เรื่อง เป็นแผนผังความคิดพร้อมการ์ดพลิกดูเหตุผล">
+<meta name="theme-color" content="#15171c">
+<meta name="color-scheme" content="dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TOEIC Grammar">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Look: single dark-graphite liquid-glass theme — frosted translucent panels over soft colored gradient glows */
+/* Layout: radial mind map hub → per-chapter branch (chapter node + leaf chips) → flip-card deck; each chapter owns one hue */
+:root{
+  color-scheme:dark;
+  --paper:#15171c; --sheet:rgba(255,255,255,.06); --ink:#e3e6ec; --muted:#a3a9b7; --line:rgba(255,255,255,.12);
+  --mark:rgba(255,206,92,.16); --mark-ink:#ffe2a0; --back:#1d2027; --back-ink:#eceef3; --on-c:#14161b;
+  --c1:#8fb0ff; --c2:#5fd6c9; --c3:#c8a8ff; --c4:#ffa77a; --c5:#ff92c4; --c6:#98dd86; --c7:#f2c46a; --c8:#7ccaf5; --c9:#c0c5d4;
+  --f-display:"Bai Jamjuree","IBM Plex Sans Thai",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Thai",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.3;text-wrap:balance;margin:0}
+:focus-visible{outline:3px solid var(--c1);outline-offset:2px;border-radius:8px}
+mark{background:var(--mark);color:var(--mark-ink);font-weight:600;padding:0 3px;border-radius:4px;font-style:normal}
+
+header.top{padding-block:36px 8px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c1)}
+header.top h1{font-size:clamp(30px,5vw,50px);margin-top:4px}
+header.top p{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.stat{background:var(--sheet);border:1px solid var(--line);border-radius:10px;padding:8px 14px;display:flex;gap:8px;align-items:baseline}
+.stat b{font-family:var(--f-display);font-size:24px;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:14px}
+.how{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:14.5px;color:var(--muted)}
+.how mark{font-weight:600}
+
+/* overview map */
+.map{margin-top:22px;background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:12px}
+.map svg{display:block;width:100%;height:auto}
+.map .lnk path{fill:none;stroke-width:2.5;opacity:.55}
+.map a rect{fill:var(--sheet);stroke-width:2}
+.map a:hover rect,.map a:focus rect{stroke-width:3.5}
+.map a:focus{outline:none}
+.map .n1{font-family:var(--f-mono);font-size:13px}
+.map .n2{font-family:var(--f-display);font-weight:600;font-size:18px;fill:var(--ink)}
+.map .n3{font-family:var(--f-body);font-size:13px;fill:var(--muted)}
+.map .hub{fill:var(--ink)}
+.map .hubt{font-family:var(--f-display);font-weight:700;fill:var(--sheet)}
+.mapgrid{display:none;grid-template-columns:1fr 1fr;gap:8px}
+.mapgrid .hubm{grid-column:1/-1;text-align:center;background:var(--ink);color:var(--sheet);border-radius:12px;padding:10px;font-family:var(--f-display);font-weight:700}
+.mapgrid a{display:block;text-decoration:none;color:var(--ink);border:2px solid var(--c);border-radius:12px;padding:8px 10px;min-width:0}
+.mapgrid a small{display:block;font-family:var(--f-mono);font-size:11.5px;color:var(--c)}
+.mapgrid a b{font-family:var(--f-display);font-weight:600;font-size:15px}
+.mapgrid a span{display:block;font-size:12.5px;color:var(--muted)}
+@media (max-width:720px){.map svg{display:none}.mapgrid{display:grid}}
+
+/* tabs */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px;padding-block:10px;margin-top:18px;border-bottom:1px solid var(--line)}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;border-radius:12px;border:1.5px solid var(--line);background:var(--sheet);text-align:center;min-width:0}
+.tab:hover{border-color:var(--c)}
+.tab:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.tab .ic{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--sheet));white-space:nowrap}
+.tab .lb{font-size:12.5px;line-height:1.3;font-family:var(--f-display);font-weight:600}
+.tab .ct{font-size:11.5px;color:var(--muted);font-family:var(--f-mono)}
+.tab[aria-selected="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--sheet))}
+.tab[aria-selected="true"] .ic{background:var(--c);color:var(--sheet)}
+@media (max-width:820px){.tabs{display:flex;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}.tab{flex:none;width:86px}}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.pager button{all:unset;box-sizing:border-box;cursor:pointer;border:1.5px solid var(--line);background:var(--sheet);border-radius:12px;padding:10px 16px;font-family:var(--f-display);font-weight:600;font-size:15px}
+.pager button:hover{border-color:var(--ink)}
+.pager button:focus-visible{outline:3px solid var(--c1);outline-offset:2px}
+.pager .nx{margin-left:auto}
+
+/* chapter */
+.chapter{padding-top:24px;scroll-margin-top:12px}
+.branch{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 22px;align-items:start}
+.node{background:var(--c);color:var(--sheet);border-radius:16px;padding:14px 18px;min-width:170px;position:relative}
+.node small{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;opacity:.85}
+.node h2{font-size:24px}
+.node .en{font-family:var(--f-mono);font-size:12px;opacity:.85}
+.leaves{list-style:none;margin:0;padding:6px 0 6px 18px;border-left:2.5px solid var(--c);display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.leaves::before{content:"";position:absolute;left:-24px;top:30px;width:22px;border-top:2.5px solid var(--c)}
+.leaves button{all:unset;cursor:pointer;font-size:14.5px;border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));background:color-mix(in srgb,var(--c) 9%,var(--sheet));border-radius:99px;padding:3px 12px;line-height:1.5}
+.leaves button:hover{background:color-mix(in srgb,var(--c) 20%,var(--sheet))}
+.leaves button:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.leaves button b{font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--c);margin-right:5px}
+@media (max-width:640px){.branch{grid-template-columns:1fr}.leaves{margin-left:22px;margin-top:10px}.leaves::before{left:-2.5px;top:-12px;width:0;height:12px;border-top:0;border-left:2.5px solid var(--c)}.node{min-width:0}}
+.tools{display:flex;justify-content:flex-end;margin:18px 0 10px}
+.tools button{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:12.5px;color:var(--c);border:1px solid var(--line);border-radius:99px;padding:3px 12px;background:var(--sheet)}
+
+/* cards */
+.deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.card{perspective:1400px;cursor:pointer;border-radius:16px;scroll-margin-top:20px}
+.card:focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.inner{display:grid;height:100%;transition:transform .55s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d}
+.card.flip .inner{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:16px 18px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.front{background:var(--sheet);border:1px solid var(--line);border-top:5px solid var(--c)}
+.back{background:var(--back);color:var(--back-ink);transform:rotateY(180deg);border-top:5px solid var(--c)}
+.tag{font-family:var(--f-mono);font-size:12px;color:var(--c);display:flex;justify-content:space-between;gap:8px}
+.back .tag{color:var(--back-ink);opacity:.75}
+.face h3{font-size:18px}
+.sent{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.sent li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px}
+.sent li>i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--muted);padding-top:3px}
+.sent .e{font-size:16.5px;display:block}
+.sent .t{font-size:14px;color:var(--muted);display:block}
+.hint{margin-top:auto;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.back .formula{font-family:var(--f-mono);font-size:13.5px;background:color-mix(in srgb,var(--back-ink) 10%,var(--back));border-radius:8px;padding:8px 10px;overflow-wrap:anywhere}
+.back p{margin:0;font-size:15.5px}
+.back .lab{font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--c)}
+.back .hint{color:var(--back-ink);opacity:.7;border-top-color:color-mix(in srgb,var(--back-ink) 25%,var(--back))}
+.card.ping .front{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 40%,transparent)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.inner{transition:none}}
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+
+/* ===== liquid glass ===== */
+body{background-color:var(--paper);background-image:
+  radial-gradient(900px 520px at 8% -8%,rgba(143,176,255,.20),transparent 62%),
+  radial-gradient(760px 480px at 100% 6%,rgba(200,168,255,.15),transparent 60%),
+  radial-gradient(820px 620px at 60% 105%,rgba(95,214,201,.10),transparent 62%),
+  linear-gradient(180deg,#1c1f26 0%,#15171c 45%,#121418 100%);
+  background-attachment:fixed;line-height:1.8}
+header.top h1{background:linear-gradient(100deg,#f4f5f8 5%,#bccaff 50%,#dcc2ff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.map,.stat,.tab,.pager button,.tools button,.mapgrid a,.front{
+  background:linear-gradient(140deg,rgba(255,255,255,.10),rgba(255,255,255,.025));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 14px 34px -16px rgba(0,0,0,.6)}
+.map,.stat{-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%)}
+.map{border-radius:24px}
+.stat{border-radius:14px}
+.map a rect{fill:rgba(28,31,38,.78)}
+.map .hub{fill:#e3e6ec}
+.map .hubt{fill:var(--on-c)}
+.mapgrid .hubm{background:linear-gradient(135deg,#eef0f5,#b9c4ff);color:var(--on-c)}
+.mapgrid a{border:1.5px solid color-mix(in srgb,var(--c) 55%,transparent)}
+body::before{background:rgba(21,23,28,.92)}
+.tabs{background:rgba(21,23,28,.6);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid var(--line)}
+.tab{border-radius:16px}
+.tab .ic{background:color-mix(in srgb,var(--c) 16%,transparent)}
+.tab:hover{border-color:color-mix(in srgb,var(--c) 60%,transparent)}
+.tab[aria-selected="true"]{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 28%,transparent),rgba(255,255,255,.03));border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 30px -12px color-mix(in srgb,var(--c) 70%,transparent)}
+.tab[aria-selected="true"] .ic{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 70%,#ffffff),var(--c));color:var(--on-c)}
+.node{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#ffffff),color-mix(in srgb,var(--c) 60%,#2b2f38));color:var(--on-c);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 16px 36px -16px var(--c);border-radius:20px}
+.leaves{border-left-color:color-mix(in srgb,var(--c) 60%,transparent)}
+.leaves::before{border-top-color:color-mix(in srgb,var(--c) 60%,transparent)}
+.leaves button{background:linear-gradient(140deg,color-mix(in srgb,var(--c) 15%,transparent),rgba(255,255,255,.02));border-color:color-mix(in srgb,var(--c) 38%,transparent)}
+.leaves button:hover{background:color-mix(in srgb,var(--c) 26%,transparent)}
+.front{border-top:3px solid color-mix(in srgb,var(--c) 85%,transparent);border-radius:20px}
+.back{background:linear-gradient(155deg,color-mix(in srgb,var(--c) 24%,#262a33) 0%,#1c1f25 72%);color:var(--back-ink);border:1px solid color-mix(in srgb,var(--c) 38%,transparent);border-top:3px solid var(--c);border-radius:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 14px 34px -16px rgba(0,0,0,.6)}
+.back .formula{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+.back .lab{color:var(--c)}
+.card{border-radius:20px}
+.card:hover .front{border-color:color-mix(in srgb,var(--c) 45%,transparent);border-top-color:var(--c)}
+mark{background:var(--mark);color:var(--mark-ink);box-shadow:inset 0 -2px 0 rgba(255,206,92,.55)}
+.sent .e{color:#eef0f4}
+.pager button:hover,.tools button:hover{border-color:rgba(255,255,255,.3)}
+</style>
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
+img{max-width:100%}[hidden]{display:none!important}
+.install{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:9px 16px;border-radius:99px;font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--on-c);background:linear-gradient(135deg,#eef0f5,#b9c4ff);box-shadow:0 10px 26px -12px rgba(185,196,255,.8)}
+.install:focus-visible{outline:3px solid var(--c1);outline-offset:2px}
+.offline{font-size:13px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">TOEIC Grammar · Mind Map</div>
+  <h1>แผนผังแกรมมาร์ TOEIC</h1>
+  <p>สรุปทุกเรื่องในชีต TOEIC Grammar เป็นแผนผังความคิด แต่ละเรื่องมีตัวอย่าง 2 ประโยคแบบง่าย ไฮไลต์จุดแกรมมาร์ที่ต้องดู และกดที่การ์ดเพื่อพลิกดูเหตุผลว่าทำไมต้องเป็นแบบนี้</p>
+  <div class="stats" id="stats"></div>
+  <div class="how"><span><mark>สีเหลือง</mark> = จุดแกรมมาร์ที่ต้องจำ</span><span>กดการ์ด = พลิกดูเหตุผล</span><span>กดปุ่มบทด้านล่าง = เปิดดูทีละบท</span></div>
+</header>
+
+<div class="map" id="map" aria-label="แผนผังภาพรวม"></div>
+<nav class="tabs" id="tabs" role="tablist" aria-label="เลือกบท"></nav>
+<main id="chapters"></main>
+<footer>เรียบเรียงจากตำรา TOEIC Grammar (Groupe ESC Chambéry / La Cité des Langues, 2006) ประโยคตัวอย่างแต่งใหม่ให้สั้นและเข้าใจง่าย</footer>
+</div>
+
+<script>
+var IC=["N","a/the","I/me","Adj","V","S=V","in/on","S+V","UK/US"];
+var C=[
+{n:"คำนาม",s:"คำนาม",e:"NOUNS",k:[
+["นามนับได้ vs นับไม่ได้","นับได้: a/an + นาม, นาม + s · นับไม่ได้: ไม่มี a/an, ไม่เติม s",[["I bought [[two cars]] last year.","ฉันซื้อรถสองคันเมื่อปีที่แล้ว"],["We need more [[money]].","เราต้องการเงินเพิ่ม"]],"car นับได้ จึงเติม s เป็น cars ได้ ส่วน money เป็นนามนับไม่ได้ ห้ามพูด a money หรือ moneys"],
+["นามที่นับไม่ได้เสมอ","advice, information, equipment, furniture, luggage, news, progress, traffic + กริยาเอกพจน์",[["She gave me [[some advice]].","เธอให้คำแนะนำฉัน"],["The [[information is]] correct.","ข้อมูลถูกต้อง"]],"advice และ information นับไม่ได้ในภาษาอังกฤษ (แม้ภาษาไทยจะนับได้) จึงห้ามใช้ an advice หรือ informations และต้องใช้กริยาเอกพจน์ is"],
+["ทำให้นับได้ด้วย a piece of","a piece of / a slice of / a can of + นามนับไม่ได้",[["Let me give you [[a piece of advice]].","ขอให้คำแนะนำสักข้อนะ"],["I'd like [[two slices of bread]].","ฉันขอขนมปังสองแผ่น"]],"นามนับไม่ได้นับตรง ๆ ไม่ได้ ต้องนับผ่านหน่วย และเติม s ที่หน่วย (slices) ไม่ใช่ที่ bread"],
+["นามสองความหมาย","paper / a paper · time / a time · work / a work · business / a business",[["This bag is made of [[paper]].","ถุงนี้ทำจากกระดาษ"],["I read [[a paper]] every morning.","ฉันอ่านหนังสือพิมพ์ทุกเช้า"]],"paper แบบนับไม่ได้ = เนื้อกระดาษ แต่ a paper แบบนับได้ = หนังสือพิมพ์หรือรายงาน คำเดียวกันแต่ความหมายเปลี่ยนตามการนับ"],
+["พหูพจน์ไม่ปกติ","child→children · tooth→teeth · crisis→crises · criterion→criteria · alumnus→alumni",[["The [[children are]] in the garden.","เด็ก ๆ อยู่ในสวน"],["These [[criteria are]] very important.","เกณฑ์เหล่านี้สำคัญมาก"]],"children และ criteria เป็นพหูพจน์อยู่แล้วโดยไม่ต้องเติม s จึงใช้กับ are และ these"],
+["เอกพจน์เสมอ / พหูพจน์เสมอ","news, economics, mathematics + is · jeans, glasses, scissors, goods, people + are",[["The [[news is]] good today.","ข่าววันนี้ดี"],["My new [[jeans are]] blue.","กางเกงยีนส์ตัวใหม่ของฉันสีฟ้า"]],"news ลงท้าย s แต่เป็นเอกพจน์ ส่วน jeans เป็นของชิ้นเดียวที่มีสองขา ภาษาอังกฤษจึงถือเป็นพหูพจน์เสมอ"],
+["รูปเดียวทั้งเอกพจน์และพหูพจน์","means, series, species, headquarters, crossroads, sheep, fish, aircraft",[["Email is [[a]] fast [[means]] of communication.","อีเมลเป็นช่องทางสื่อสารที่รวดเร็ว"],["Our [[headquarters is]] in Bangkok.","สำนักงานใหญ่ของเราอยู่ที่กรุงเทพฯ"]],"means และ headquarters หน้าตาเหมือนพหูพจน์ แต่ใช้เป็นเอกพจน์ได้ ดูจากคำนำหน้า (a) หรือความหมาย (สำนักงานแห่งเดียว)"],
+["hundred / thousand / million","ตัวเลข + thousand (ไม่เติม s) · thousands of + นามพหูพจน์",[["The car costs [[twenty thousand]] dollars.","รถคันนี้ราคาสองหมื่นดอลลาร์"],["[[Thousands of]] people came to the concert.","คนหลายพันคนมาดูคอนเสิร์ต"]],"ถ้ามีตัวเลขบอกชัด thousand ทำหน้าที่เหมือนคุณศัพท์ จึงไม่เติม s ถ้าไม่ระบุจำนวน (หลายพัน) ใช้ thousands of"],
+["คำเรียกขาน Mr / Mrs / Ms","Mr / Mrs / Miss / Ms + นามสกุล",[["Good morning, [[Ms Smith]].","สวัสดีตอนเช้าค่ะ คุณสมิธ"],["[[Mr Brown]] is our new manager.","คุณบราวน์เป็นผู้จัดการคนใหม่ของเรา"]],"คำเรียกขานต้องตามด้วยนามสกุลเสมอ Ms ใช้กับผู้หญิงโดยไม่ระบุว่าแต่งงานหรือยัง เหมาะกับงานธุรกิจที่สุด"],
+["คำย่อในงานธุรกิจ","ASAP, RSVP, e.g., i.e., attn, Ltd, Inc, CEO, HR, R&D, VAT",[["Please reply [[ASAP]].","กรุณาตอบกลับโดยเร็วที่สุด"],["We sell fruit, [[e.g.]] apples and mangoes.","เราขายผลไม้ เช่น แอปเปิลและมะม่วง"]],"ASAP = as soon as possible · e.g. = for example (ยกตัวอย่าง) ต่างจาก i.e. = that is (นั่นคือ ใช้ขยายความ)"]
+]},
+{n:"คำนำหน้านาม",s:"คำนำหน้านาม",e:"DETERMINERS",k:[
+["นามเอกพจน์ห้ามอยู่ลอย ๆ","a / the / my / this + นามนับได้เอกพจน์",[["I have [[a car]].","ฉันมีรถหนึ่งคัน"],["[[My laptop]] is on the desk.","แล็ปท็อปของฉันอยู่บนโต๊ะ"]],"นามนับได้เอกพจน์ (car, laptop) ต้องมีคำนำหน้าเสมอ พูดว่า I have car ไม่ได้"],
+["พูดทั่วไป ไม่ใส่ article","นามพหูพจน์ / นามนับไม่ได้ ไม่มี the = พูดถึงโดยทั่วไป",[["[[Jobs]] are hard to find.","งานหายาก"],["[[Music]] makes me happy.","ดนตรีทำให้ฉันมีความสุข"]],"เมื่อพูดถึงสิ่งนั้นโดยรวม ไม่เจาะจงชิ้นไหน ไม่ต้องใส่ the ถ้าใส่ the music จะหมายถึงเพลงเพลงหนึ่งที่รู้กันอยู่"],
+["the = เจาะจง","the + นามที่รู้ว่าอันไหน หรือมีส่วนขยายบอก",[["[[The music]] in this café is nice.","เพลงในร้านกาแฟนี้เพราะ"],["Please read [[the report]] on my desk.","กรุณาอ่านรายงานที่อยู่บนโต๊ะฉัน"]],"มีส่วนขยายบอกชัดว่าอันไหน (in this café, on my desk) จึงต้องใช้ the"],
+["the กับชื่อสถานที่","the + ทะเล แม่น้ำ เทือกเขา หมู่เกาะ ประเทศพหูพจน์ · ไม่ใส่ the: เมือง ทวีป ทะเลสาบ ประเทศชื่อเดี่ยว",[["We swam in [[the Atlantic]].","เราว่ายน้ำในมหาสมุทรแอตแลนติก"],["She lives in [[France]].","เธออาศัยอยู่ที่ฝรั่งเศส"]],"มหาสมุทรใช้ the เสมอ แต่ประเทศชื่อเดี่ยว ๆ อย่าง France ไม่ใช้ the (ต่างจาก the Netherlands, the United Kingdom)"],
+["สำนวนที่ไม่มี article","go to school / work / bed / church · be at home / at work / in town",[["He goes to [[school]] by bus.","เขาไปโรงเรียนโดยรถบัส"],["I'm still [[at work]].","ฉันยังอยู่ที่ทำงาน"]],"เมื่อพูดถึงการไปทำกิจกรรมหลักของสถานที่นั้น (ไปเรียน ไปทำงาน) ไม่ต้องใส่ the"],
+["a หรือ an ดูที่เสียง","a + เสียงพยัญชนะ · an + เสียงสระ",[["The meeting lasts [[an hour]].","ประชุมใช้เวลาหนึ่งชั่วโมง"],["Every staff member wears [[a uniform]].","พนักงานทุกคนใส่เครื่องแบบ"]],"hour ตัว h ไม่ออกเสียง ขึ้นต้นด้วยเสียงสระ จึงใช้ an ส่วน uniform ออกเสียง 'ยู' เป็นเสียงพยัญชนะ จึงใช้ a"],
+["a/an กับอาชีพและอัตรา","be + a/an + อาชีพ · ตัวเลข + a/an + หน่วย (= per)",[["Mr Bates is [[a lawyer]].","คุณเบตส์เป็นทนายความ"],["Take this medicine twice [[a day]].","กินยานี้วันละสองครั้ง"]],"ภาษาอังกฤษบอกอาชีพต้องมี a/an เสมอ และ a day แปลว่า 'ต่อวัน' เหมือน per day"],
+["this / that / these / those","ใกล้: this + เอกพจน์, these + พหูพจน์ · ไกล: that, those",[["[[This pen]] is mine.","ปากกาด้ามนี้เป็นของฉัน"],["[[Those boxes]] are heavy.","กล่องพวกนั้นหนัก"]],"this/that ใช้กับเอกพจน์ these/those ใช้กับพหูพจน์ ต้องเลือกให้ตรงจำนวนของนาม"],
+["some / any","some: บอกเล่า ขอร้อง เสนอ · any: ปฏิเสธ คำถาม if",[["I have [[some]] questions.","ฉันมีคำถามบางข้อ"],["Do you have [[any]] questions?","คุณมีคำถามไหม"]],"ประโยคบอกเล่าใช้ some ประโยคคำถามหรือปฏิเสธใช้ any (ยกเว้นคำถามเชิงเสนอ เช่น Would you like some tea?) คำประสม someone, anything ก็ใช้หลักเดียวกัน"],
+["much / many","much, an amount of, less + นับไม่ได้ · many, a number of, fewer + นับได้พหูพจน์",[["We don't have [[much time]].","เรามีเวลาไม่มาก"],["There are [[many guests]] tonight.","คืนนี้มีแขกเยอะ"]],"time นับไม่ได้ จึงใช้ much ส่วน guests นับได้และเป็นพหูพจน์ จึงใช้ many"],
+["few / a few · little / a little","few, little = แทบไม่มี (ลบ) · a few, a little = มีบ้าง (บวก)",[["[[Few]] people came, so the room was empty.","แทบไม่มีคนมา ห้องเลยว่าง"],["I have [[a few]] friends in Tokyo.","ฉันมีเพื่อนอยู่ที่โตเกียวสองสามคน"]],"ไม่มี a = เน้นว่าน้อยจนแทบไม่มี มี a = มีอยู่บ้าง few/a few ใช้กับนามนับได้ little/a little ใช้กับนามนับไม่ได้"],
+["each / every","each / every + นามเอกพจน์ + กริยาเอกพจน์",[["[[Each student has]] a book.","นักเรียนแต่ละคนมีหนังสือ"],["I go to the gym [[every day]].","ฉันไปยิมทุกวัน"]],"each และ every ตามด้วยนามเอกพจน์เสมอ each เน้นทีละคน every เน้นทุกคนในภาพรวม และใช้บอกความถี่ได้"],
+["all / whole","all (the) + นาม · the / my + whole + นามเอกพจน์",[["She spent [[all the money]].","เธอใช้เงินหมดเลย"],["I worked [[the whole day]].","ฉันทำงานทั้งวัน"]],"all วางหน้า the ส่วน whole วางหลัง the และใช้กับนามนับได้เอกพจน์ (the whole day = all day)"],
+["most / most of","most + นาม · most of + the / my / these + นาม",[["[[Most people]] like coffee.","คนส่วนใหญ่ชอบกาแฟ"],["[[Most of my friends]] live here.","เพื่อนส่วนใหญ่ของฉันอยู่ที่นี่"]],"ถ้ามี the / my / these ต้องใส่ of คั่น ถ้าพูดทั่วไปไม่มีคำนำหน้า ใช้ most + นามได้เลย"]
+]},
+{n:"คำสรรพนาม",s:"สรรพนาม",e:"PRONOUNS",k:[
+["ประธาน vs กรรม","ประธาน: I he she we they · กรรม: me him her us them",[["[[She]] called [[me]] yesterday.","เธอโทรหาฉันเมื่อวาน"],["Tom and [[I]] are late.","ทอมกับฉันมาสาย"]],"หน้ากริยาใช้รูปประธาน หลังกริยาใช้รูปกรรม Tom and I อยู่ตำแหน่งประธาน จึงใช้ I ไม่ใช่ me"],
+["my vs mine","my / your / their + นาม · mine / yours / theirs ยืนเดี่ยว",[["This is [[my bag]].","นี่คือกระเป๋าของฉัน"],["This bag is [[mine]].","กระเป๋าใบนี้เป็นของฉัน"]],"my ต้องมีนามตามหลัง ส่วน mine ใช้แทน my bag ทั้งก้อน จึงไม่มีนามตาม"],
+["-self ตัวเอง","myself, yourself, himself, herself, itself, ourselves, themselves",[["He hurt [[himself]].","เขาทำตัวเองบาดเจ็บ"],["I made this cake [[myself]].","ฉันทำเค้กนี้เอง"]],"ใช้ -self เมื่อผู้กระทำและผู้ถูกกระทำเป็นคนเดียวกัน หรือเน้นว่าทำด้วยตัวเอง"],
+["who / which","คน + who · สิ่งของ + which / that",[["The man [[who called]] is my boss.","ผู้ชายที่โทรมาคือเจ้านายฉัน"],["The phone [[which I bought]] is broken.","โทรศัพท์ที่ฉันซื้อมาเสีย"]],"who ใช้แทนคน (the man) ส่วน which ใช้แทนสิ่งของ (the phone) ทำหน้าที่เชื่อมสองประโยคเข้าด้วยกัน"],
+["whose = ของคนนั้น","นาม + whose + นาม + กริยา",[["The woman [[whose car]] was stolen called the police.","ผู้หญิงที่รถถูกขโมยโทรแจ้งตำรวจ"],["I know a man [[whose son]] is a pilot.","ฉันรู้จักผู้ชายคนหนึ่งที่ลูกชายเป็นนักบิน"]],"หลัง whose จะเป็นคำนามเสมอ และคำนามนั้นเป็นของคำข้างหน้า (car ของ woman) ถ้าหลังช่องว่างเป็นนาม ให้นึกถึง whose ก่อน"],
+["ละ who / which / that ได้","นาม + (that) + ประธานใหม่ + กริยา",[["The book [[(that) I read]] was great.","หนังสือที่ฉันอ่านดีมาก"],["The people [[(who) we met]] were kind.","คนที่เราเจอใจดี"]],"ถ้าคำเชื่อมทำหน้าที่เป็นกรรม (หลังมันมีประธานใหม่ I / we) ละได้ แต่ถ้าคำเชื่อมเป็นประธานเอง (the man who called) ละไม่ได้"],
+["what vs which","What = สิ่งที่ (ไม่มีนามข้างหน้า) · , which = อ้างถึงทั้งประโยค",[["[[What I need]] is sleep.","สิ่งที่ฉันต้องการคือการนอน"],["He was late, [[which]] made me angry.","เขามาสาย ซึ่งทำให้ฉันโกรธ"]],"what ไม่ต้องมีคำนามข้างหน้า แปลว่า 'สิ่งที่' ส่วน , which ใช้อ้างถึงเหตุการณ์ทั้งประโยคก่อนหน้า (การมาสาย)"],
+["That-clause เป็นประธาน","(The fact) That + ประโยค + กริยาเอกพจน์",[["[[That she resigned]] surprised everyone.","การที่เธอลาออกทำให้ทุกคนแปลกใจ"],["[[The fact that he lied]] is clear.","ความจริงที่ว่าเขาโกหกนั้นชัดเจน"]],"ทั้งก้อน That + ประโยค ทำหน้าที่เป็นประธานหนึ่งตัว จึงใช้กริยาเอกพจน์"]
+]},
+{n:"คุณศัพท์และกริยาวิเศษณ์",s:"คุณศัพท์ / วิเศษณ์",e:"ADJECTIVES & ADVERBS",k:[
+["คุณศัพท์ vs กริยาวิเศษณ์","adj + นาม · กริยา + adv (adj + ly)",[["She is a [[careful]] driver.","เธอเป็นคนขับรถที่ระมัดระวัง"],["She drives [[carefully]].","เธอขับรถอย่างระมัดระวัง"]],"careful ขยายคำนาม driver จึงเป็นคุณศัพท์ ส่วน carefully ขยายกริยา drives จึงต้องเป็นกริยาวิเศษณ์ (เติม ly)"],
+["ตำแหน่งของ adverb","กริยา + กรรม + adv · adv + adj · adv + adv",[["He speaks English [[fluently]].","เขาพูดภาษาอังกฤษคล่อง"],["The hotel is [[very expensive]].","โรงแรมนี้แพงมาก"]],"adverb ห้ามแทรกระหว่างกริยากับกรรม (speaks fluently English ผิด) และวางหน้าคุณศัพท์เพื่อขยายได้ (very ขยาย expensive)"],
+["ลงท้าย -ly แต่เป็นคุณศัพท์","friendly, lively, costly, likely = adj · daily, weekly, early, fast = ได้ทั้งสองแบบ",[["Our staff are very [[friendly]].","พนักงานของเราเป็นมิตรมาก"],["I read a [[daily]] newspaper.","ฉันอ่านหนังสือพิมพ์รายวัน"]],"friendly หน้าตาเหมือน adverb แต่เป็นคุณศัพท์ ส่วน daily ขยายนาม newspaper ได้ และยังใช้เป็น adverb ได้ด้วย (He runs daily.)"],
+["hard / hardly · late / lately","hard = หนัก · hardly = แทบจะไม่ · late = สาย · lately = ช่วงนี้ · high / highly",[["He works [[hard]] every day.","เขาทำงานหนักทุกวัน"],["I can [[hardly]] hear you.","ฉันแทบไม่ได้ยินเสียงคุณ"]],"เติม ly แล้วความหมายเปลี่ยนไปเลย hardly ไม่ได้แปลว่า 'อย่างหนัก' แต่แปลว่า 'แทบจะไม่' มีความหมายเชิงปฏิเสธ"],
+["กริยาสภาวะ + คุณศัพท์","be, seem, become, appear, look, sound, taste, feel, smell + adj",[["The soup [[tastes good]].","ซุปรสชาติดี"],["You [[look tired]].","คุณดูเหนื่อย"]],"กริยากลุ่มนี้ไม่ได้บอกการกระทำ แต่บอกสภาพของประธาน จึงตามด้วยคุณศัพท์ ไม่ใช่ adverb (tastes well ผิด)"],
+["-ing vs -ed","-ing = สิ่งที่ทำให้รู้สึก · -ed = คนที่รู้สึก",[["The movie was [[boring]].","หนังน่าเบื่อ"],["I was [[bored]].","ฉันรู้สึกเบื่อ"]],"หนังเป็นต้นเหตุ ทำให้คนเบื่อ จึงใช้ boring ส่วนฉันเป็นคนที่รู้สึก จึงใช้ bored"],
+["คุณศัพท์มีขีด","a + ตัวเลข-นามเอกพจน์ + นาม",[["We had [[a two-hour]] meeting.","เรามีประชุมสองชั่วโมง"],["Can you change [[a ten-dollar]] bill?","แลกแบงก์สิบดอลลาร์ให้ได้ไหม"]],"เมื่อนำตัวเลข-นาม มาทำหน้าที่คุณศัพท์ คุณศัพท์ไม่มีรูปพหูพจน์ จึงห้ามเติม s (two-hours ผิด)"],
+["so vs such","so + adj · such (a) + adj + นาม",[["The day was [[so nice]].","วันนี้อากาศดีมาก"],["It was [[such a nice day]].","เป็นวันที่ดีมาก"]],"so ตามด้วยคุณศัพท์อย่างเดียว ส่วน such ต้องมีคำนามตามมาด้วย (a nice day)"],
+["enough / too","adj + enough · enough + นาม · too + adj + to V",[["He is [[old enough]] to drive.","เขาอายุมากพอที่จะขับรถ"],["It's [[too hot]] to go out.","ร้อนเกินกว่าจะออกไปข้างนอก"]],"enough วางหลังคุณศัพท์ แต่วางหน้าคำนาม (enough time) ส่วน too แปลว่า 'มากเกินไป' จนทำบางอย่างไม่ได้"],
+["ขั้นกว่า (Comparative)","adj สั้น + er + than · more + adj ยาว + than",[["My car is [[faster than]] yours.","รถฉันเร็วกว่ารถคุณ"],["This book is [[more interesting than]] that one.","หนังสือเล่มนี้น่าสนใจกว่าเล่มนั้น"]],"fast สั้น (1 พยางค์) เติม er ส่วน interesting ยาว ใช้ more นำหน้า และขั้นกว่าต้องคู่กับ than"],
+["ขั้นสุด (Superlative)","the + adj-est · the most + adj ยาว (+ in / of)",[["She is [[the tallest]] in the class.","เธอสูงที่สุดในห้อง"],["It's [[the most expensive]] hotel in town.","เป็นโรงแรมที่แพงที่สุดในเมือง"]],"ขั้นสุดใช้ the เสมอ และมักมี in / of บอกขอบเขตว่าที่สุดในกลุ่มไหน"],
+["ขั้นกว่า / สุด แบบไม่ปกติ","good-better-best · bad-worse-worst · far-further-furthest · little-less-least",[["Today is [[better]] than yesterday.","วันนี้ดีกว่าเมื่อวาน"],["It was [[the worst]] day of my life.","เป็นวันที่แย่ที่สุดในชีวิตฉัน"]],"good และ bad ไม่เติม er/est ต้องจำรูปพิเศษ (gooder, baddest ผิด)"],
+["คำเน้นขั้นกว่า","much / far / a lot / slightly / a little + ขั้นกว่า",[["The new office is [[much bigger]].","ออฟฟิศใหม่ใหญ่กว่ามาก"],["Prices are [[slightly higher]] this year.","ปีนี้ราคาสูงขึ้นเล็กน้อย"]],"หน้าขั้นกว่าใช้ much / far / slightly เพื่อบอกว่ามากกว่ามากหรือน้อย ห้ามใช้ very (very bigger ผิด)"],
+["as … as = เท่ากัน","as + adj + as · twice / three times as + adj + as · the same … as",[["He is [[as tall as]] his father.","เขาสูงเท่าพ่อ"],["This bag costs [[twice as much as]] that one.","กระเป๋าใบนี้แพงเป็นสองเท่าของใบนั้น"]],"as…as ใช้คุณศัพท์รูปปกติ (ไม่เติม er) และใส่ twice / three times ข้างหน้าเพื่อบอกจำนวนเท่าได้"],
+["ยิ่ง…ยิ่ง / มากขึ้นเรื่อย ๆ","adj-er and adj-er · The + ขั้นกว่า…, the + ขั้นกว่า…",[["It's getting [[colder and colder]].","อากาศหนาวขึ้นเรื่อย ๆ"],["[[The more]] you practice, [[the better]] you get.","ยิ่งฝึกมาก ยิ่งเก่งขึ้น"]],"ขั้นกว่าซ้ำสองครั้งแปลว่าเพิ่มขึ้นเรื่อย ๆ ส่วน The…, the… ใช้เมื่อสองสิ่งเปลี่ยนไปพร้อมกัน"],
+["another / other / others","another + เอกพจน์ · other + พหูพจน์ · others ยืนเดี่ยว",[["Can I have [[another cookie]]?","ขอคุกกี้อีกชิ้นได้ไหม"],["Some like tea; [[others]] like coffee.","บางคนชอบชา คนอื่น ๆ ชอบกาแฟ"]],"another = an + other จึงใช้กับเอกพจน์ ส่วน others เป็นสรรพนาม ไม่มีนามตามหลัง (other people = others)"],
+["คุณศัพท์ + บุพบท","interested in · good at · responsible for · afraid of · similar to · satisfied with",[["I'm [[interested in]] art.","ฉันสนใจศิลปะ"],["She is [[good at]] math.","เธอเก่งคณิตศาสตร์"]],"คุณศัพท์บางคำมีบุพบทคู่ตายตัว ต้องจำเป็นคู่ ข้อสอบชอบเปลี่ยนบุพบทให้ผิด (interested on, good in)"],
+["the + คุณศัพท์ = กลุ่มคน","the rich / the poor / the young / the disabled + กริยาพหูพจน์",[["[[The rich]] pay more tax.","คนรวยจ่ายภาษีมากกว่า"],["We should help [[the poor]].","เราควรช่วยเหลือคนจน"]],"the + adj หมายถึงคนทั้งกลุ่มนั้น จึงเป็นพหูพจน์ (pay ไม่ใช่ pays) และไม่ต้องเติม s ที่คุณศัพท์"],
+["adverb กลางประโยค","ประธาน + adv + กริยาแท้ · be / กริยาช่วยตัวแรก + adv",[["I [[always]] drink coffee.","ฉันดื่มกาแฟเสมอ"],["She has [[already]] left.","เธอออกไปแล้ว"]],"คำบอกความถี่และ already วางหน้ากริยาแท้ (drink) แต่ถ้ามีกริยาช่วย (has) ให้วางหลังกริยาช่วยตัวแรก"],
+["sometimes vs sometime","sometimes = บางครั้ง · sometime = สักวันหนึ่ง",[["I [[sometimes]] cook at home.","บางครั้งฉันก็ทำอาหารที่บ้าน"],["Let's meet [[sometime]] next week.","สัปดาห์หน้าเจอกันสักวันนะ"]],"sometimes ตอบคำถาม How often? ส่วน sometime ตอบคำถาม When? หมายถึงเวลาที่ยังไม่ระบุ"],
+["only / even","only / even + คำที่ต้องการเน้น",[["It takes [[only five minutes]].","ใช้เวลาแค่ห้านาที"],["[[Even]] the boss was late.","แม้แต่เจ้านายก็มาสาย"]],"only และ even วางหน้าคำที่ต้องการเน้นโดยตรง ย้ายตำแหน่งแล้วความหมายจะเปลี่ยน"]
+]},
+{n:"คำกริยาและ Tense",s:"กริยา & Tense",e:"VERBS & TENSES",k:[
+["กริยาช่วย be / have / do","be + V-ing · be + V3 · have + V3 · do + V1",[["He [[is working]] now.","ตอนนี้เขากำลังทำงาน"],["She [[has finished]] her report.","เธอเขียนรายงานเสร็จแล้ว"]],"be + V-ing บอกว่ากำลังทำ have + V3 บอกว่าทำเสร็จแล้ว กริยาช่วยต้องจับคู่กับรูปกริยาที่ถูกต้อง"],
+["Modal + V1","can, could, will, would, should, may, might, must + V1",[["You [[can go]] now.","คุณไปได้แล้ว"],["He [[must work]] late tonight.","คืนนี้เขาต้องทำงานดึก"]],"หลัง modal ใช้ V1 ไม่เติม s ไม่ผัน ไม่มี to (can goes, must to work ผิด)"],
+["Present simple","ประธาน + V1 (เติม s กับ he/she/it) · คำใบ้: every day, usually, always",[["I [[go]] to work [[every day]].","ฉันไปทำงานทุกวัน"],["She [[drinks]] tea in the morning.","เธอดื่มชาตอนเช้า"]],"ใช้กับสิ่งที่ทำเป็นประจำหรือเป็นความจริง ประธานเอกพจน์บุรุษที่ 3 (she) ต้องเติม s ที่กริยา"],
+["Present continuous","am / is / are + V-ing · คำใบ้: now, at the moment, currently",[["I [[am reading]] [[now]].","ฉันกำลังอ่านหนังสืออยู่ตอนนี้"],["They [[are having]] a meeting [[at the moment]].","ตอนนี้พวกเขากำลังประชุม"]],"เหตุการณ์ที่กำลังเกิดขณะพูด คำบอกเวลาอย่าง now / at the moment เป็นตัวใบ้ ใช้บอกแผนในอนาคตใกล้ได้ด้วย"],
+["Present perfect","have / has + V3 · since + จุดเวลา · for + ช่วงเวลา",[["I [[have lived]] here [[since]] 2020.","ฉันอยู่ที่นี่ตั้งแต่ปี 2020"],["She [[has worked]] here [[for]] five years.","เธอทำงานที่นี่มาห้าปีแล้ว"]],"เริ่มในอดีตและยังต่อเนื่องถึงตอนนี้ since บอกจุดเริ่ม (2020) ส่วน for บอกระยะเวลา (five years)"],
+["Past simple","V2 · คำใบ้: yesterday, last year, ago, in 2019",[["I [[visited]] Japan [[last year]].","ฉันไปญี่ปุ่นเมื่อปีที่แล้ว"],["He [[left]] two hours [[ago]].","เขาออกไปเมื่อสองชั่วโมงก่อน"]],"เหตุการณ์จบแล้วในอดีตและมีเวลาระบุชัด ห้ามใช้ present perfect กับ ago หรือ last year"],
+["Past perfect","had + V3 = เกิดก่อนอีกเหตุการณ์ในอดีต",[["The meeting [[had started]] when I arrived.","ประชุมเริ่มไปแล้วตอนที่ฉันมาถึง"],["By the time we got there, the train [[had left]].","กว่าเราจะไปถึง รถไฟก็ออกไปแล้ว"]],"มีสองเหตุการณ์ในอดีต อันที่เกิดก่อน (ประชุมเริ่ม) ใช้ had + V3 อันที่เกิดทีหลัง (ฉันมาถึง) ใช้ V2"],
+["Future / Future perfect","will + V1 · will have + V3 + by + เวลาในอนาคต",[["I [[will call]] you tomorrow.","พรุ่งนี้ฉันจะโทรหาคุณ"],["I [[will have finished]] the report [[by]] Friday.","ภายในวันศุกร์ฉันจะเขียนรายงานเสร็จแล้ว"]],"will + V1 บอกอนาคตทั่วไป ส่วน will have + V3 บอกว่างานจะเสร็จก่อนจุดเวลาหนึ่งในอนาคต คำใบ้คือ by"],
+["กริยาสภาวะ ไม่ใช้ -ing","know, like, want, need, believe, own, understand, prefer, seem",[["I [[know]] the answer.","ฉันรู้คำตอบ"],["She [[likes]] chocolate.","เธอชอบช็อกโกแลต"]],"กริยาเหล่านี้บอกสภาพหรือความรู้สึก ไม่ใช่การกระทำ จึงไม่ใช้รูป -ing (I am knowing ผิด)"],
+["rise vs raise","rise-rose-risen (ไม่มีกรรม) · raise-raised-raised (มีกรรม)",[["Prices [[rose]] last month.","ราคาขึ้นเมื่อเดือนที่แล้ว"],["The company [[raised]] prices.","บริษัทขึ้นราคา"]],"rise คือขึ้นเอง ไม่มีกรรมตามหลัง ส่วน raise คือทำให้บางอย่างขึ้น ต้องมีกรรม (prices)"],
+["lie vs lay","lie-lay-lain = นอน อยู่ (ไม่มีกรรม) · lay-laid-laid = วาง (มีกรรม)",[["He [[is lying]] on the sofa.","เขากำลังนอนอยู่บนโซฟา"],["Please [[lay]] the files on my desk.","กรุณาวางแฟ้มไว้บนโต๊ะฉัน"]],"lie ไม่มีกรรม (นอนเฉย ๆ) ส่วน lay ต้องมีกรรม (วางแฟ้ม) ระวัง lay ยังเป็นช่อง 2 ของ lie ด้วย"],
+["กริยา 3 ช่อง","Past ใช้ V2 · หลัง have / has / had และ passive ใช้ V3",[["She [[wrote]] a letter yesterday.","เมื่อวานเธอเขียนจดหมาย"],["I have [[written]] three letters.","ฉันเขียนจดหมายไปสามฉบับแล้ว"]],"write-wrote-written ประโยคอดีตธรรมดาใช้ช่อง 2 (wrote) แต่หลัง have ต้องใช้ช่อง 3 (written)"],
+["คำเชื่อมเวลา ห้ามใช้ will","when, until, as soon as, before, after, once + Present",[["Call me [[when]] you [[arrive]].","ถึงแล้วโทรหาฉันนะ"],["I'll wait [[until]] he [[comes]] back.","ฉันจะรอจนกว่าเขาจะกลับมา"]],"ถึงจะพูดถึงอนาคต แต่หลัง when / until ใช้ present แทน will (when you will arrive ผิด)"],
+["If แบบ 0 — ความจริง","If + Present, Present",[["[[If]] you [[heat]] ice, it [[melts]].","ถ้าทำให้น้ำแข็งร้อน มันจะละลาย"],["[[If]] I [[drink]] coffee at night, I [[can't]] sleep.","ถ้าดื่มกาแฟตอนกลางคืน ฉันจะนอนไม่หลับ"]],"ใช้กับความจริงทั่วไปที่เกิดทุกครั้ง จึงใช้ present ทั้งสองฝั่ง"],
+["If แบบ 1 — เป็นไปได้","If + Present, will + V1",[["[[If]] it [[rains]], I [[will stay]] home.","ถ้าฝนตก ฉันจะอยู่บ้าน"],["[[If]] you [[study]], you [[will pass]].","ถ้าคุณอ่านหนังสือ คุณจะสอบผ่าน"]],"เรื่องที่อาจเกิดขึ้นได้จริงในอนาคต ฝั่ง If ใช้ present ฝั่งผลใช้ will"],
+["If แบบ 2 — สมมติปัจจุบัน","If + Past (be = were), would + V1",[["[[If]] I [[were]] rich, I [[would buy]] a house.","ถ้าฉันรวย ฉันจะซื้อบ้าน"],["[[If]] she [[had]] time, she [[would help]] us.","ถ้าเธอมีเวลา เธอคงช่วยเรา"]],"สมมติสิ่งที่ตรงข้ามกับความจริงตอนนี้ (ความจริงคือไม่รวย) ใช้ were กับทุกประธาน"],
+["If แบบ 3 — สมมติอดีต","If + had + V3, would have + V3",[["[[If]] I [[had known]], I [[would have helped]].","ถ้าฉันรู้ ฉันคงช่วยไปแล้ว"],["[[If]] we [[had left]] early, we [[would have caught]] the train.","ถ้าเราออกเร็ว เราคงทันรถไฟ"]],"สมมติย้อนอดีตที่เปลี่ยนไม่ได้แล้ว (ความจริงคือไม่รู้ จึงไม่ได้ช่วย)"],
+["unless = if not","Unless + ประโยคบอกเล่า",[["[[Unless]] you hurry, you will be late.","ถ้าไม่รีบ คุณจะสาย"],["We won't go [[unless]] it stops raining.","เราจะไม่ไปถ้าฝนไม่หยุด"]],"unless มีความหมายปฏิเสธในตัวอยู่แล้ว ห้ามใส่ not ซ้ำ (unless you don't hurry ผิด)"],
+["Passive voice","be (ผันตาม tense) + V3",[["The letter [[was sent]] yesterday.","จดหมายถูกส่งไปเมื่อวาน"],["English [[is spoken]] here.","ที่นี่พูดภาษาอังกฤษ"]],"ประธาน (จดหมาย, ภาษา) ไม่ได้ทำเอง แต่ถูกกระทำ จึงใช้ be + V3 คำสุดท้ายของ passive ต้องเป็น V3 เสมอ"],
+["Passive + by / continuous","be + V3 + by + ผู้กระทำ · be being + V3",[["This book [[was written by]] a doctor.","หนังสือเล่มนี้เขียนโดยหมอ"],["The house [[is being painted]] now.","บ้านกำลังถูกทาสีอยู่"]],"by บอกว่าใครเป็นคนทำ ส่วน is being + V3 คือ passive ของ present continuous (กำลังถูกทำ)"],
+["Gerund เป็นประธาน","V-ing + กริยาเอกพจน์",[["[[Swimming is]] good exercise.","การว่ายน้ำเป็นการออกกำลังกายที่ดี"],["[[Learning]] English [[takes]] time.","การเรียนภาษาอังกฤษต้องใช้เวลา"]],"V-ing ทำหน้าที่เป็นคำนามได้ และนับเป็นสิ่งเดียว จึงใช้กริยาเอกพจน์ (is, takes)"],
+["กริยา + V-ing","enjoy, avoid, finish, mind, suggest, consider, admit, deny, keep, postpone, risk",[["I [[enjoy reading]].","ฉันชอบอ่านหนังสือ"],["He [[avoided answering]] the question.","เขาเลี่ยงที่จะตอบคำถาม"]],"กริยากลุ่มนี้ต้องตามด้วย V-ing เท่านั้น ต้องท่องจำ (enjoy to read, avoid to answer ผิด)"],
+["บุพบท + V-ing","บุพบท (in, on, at, of, for, about, to) + V-ing",[["I [[look forward to seeing]] you.","ฉันตั้งตารอที่จะได้พบคุณ"],["She is [[good at cooking]].","เธอทำอาหารเก่ง"]],"หลังบุพบทต้องเป็นคำนามหรือ V-ing เสมอ to ใน look forward to เป็นบุพบท จึงใช้ seeing ไม่ใช่ see"],
+["สำนวน + V-ing","It's no use · It's worth · spend time · have difficulty · go shopping",[["[[It's no use crying]] about it.","ร้องไห้ไปก็ไม่มีประโยชน์"],["I [[spent]] two hours [[cleaning]] the house.","ฉันใช้เวลาสองชั่วโมงทำความสะอาดบ้าน"]],"สำนวนเหล่านี้ตามด้วย V-ing แบบตายตัว spend + เวลา/เงิน + V-ing (spent two hours to clean ผิด)"],
+["to V บอกจุดประสงค์","(in order) to / so as to + V1",[["I came here [[to learn]] English.","ฉันมาที่นี่เพื่อเรียนภาษาอังกฤษ"],["She saves money [[in order to]] buy a car.","เธอเก็บเงินเพื่อซื้อรถ"]],"to + V1 แปลว่า 'เพื่อ' บอกเหตุผลว่าทำไปทำไม"],
+["กริยา + to V","want, decide, hope, plan, agree, refuse, manage, afford, promise, offer, fail",[["I [[want to go]] home.","ฉันอยากกลับบ้าน"],["She [[decided to stay]].","เธอตัดสินใจอยู่ต่อ"]],"กริยากลุ่มนี้ตามด้วย to + V1 เท่านั้น มักเกี่ยวกับความตั้งใจหรือสิ่งที่จะทำในอนาคต"],
+["กริยา + กรรม + to V","ask, tell, advise, allow, encourage, remind, require, want + คน + to V",[["My boss [[asked me to help]].","เจ้านายขอให้ฉันช่วย"],["She [[told him to wait]].","เธอบอกให้เขารอ"]],"มีคนที่ถูกขอหรือถูกบอก (me, him) แทรกกลาง แล้วตามด้วย to + V1"],
+["คำถาม + to V","what / how / where / when + to V",[["I don't know [[what to do]].","ฉันไม่รู้ว่าจะทำอะไร"],["Can you show me [[how to use]] this?","ช่วยสอนวิธีใช้อันนี้ได้ไหม"]],"คำแสดงคำถาม + to V ใช้แทนประโยคยาว (what I should do) ได้"],
+["remember / stop / forget","V-ing = เรื่องที่ทำไปแล้ว · to V = เรื่องที่ต้องทำ",[["I [[remember locking]] the door.","ฉันจำได้ว่าล็อกประตูแล้ว"],["[[Remember to lock]] the door.","อย่าลืมล็อกประตูนะ"]],"กริยากลุ่มนี้ได้ทั้งสองแบบแต่ความหมายต่างกัน V-ing ชี้ไปข้างหลัง (ทำแล้ว) to V ชี้ไปข้างหน้า (ยังไม่ได้ทำ)"],
+["Subjunctive","suggest / recommend / It is important + that + ประธาน + V1",[["It is important that he [[be]] on time.","สำคัญที่เขาต้องมาตรงเวลา"],["I suggest that she [[take]] a rest.","ฉันแนะนำให้เธอพักผ่อน"]],"หลังคำที่แสดงการแนะนำหรือความจำเป็น ใช้ V1 ล้วน ไม่เติม s ไม่ผัน (she takes, he is ผิด)"],
+["let / make / help + V1","let / make / help + กรรม + V1 (ไม่มี to)",[["My mom [[let me go]] out.","แม่ให้ฉันออกไปข้างนอก"],["The movie [[made me cry]].","หนังทำให้ฉันร้องไห้"]],"let และ make ตามด้วยกรรม แล้วใช้ V1 ทันที ไม่มี to (made me to cry ผิด)"],
+["กริยาการรับรู้","see / hear / watch / feel + กรรม + V1 หรือ V-ing",[["I [[saw him leave]].","ฉันเห็นเขาออกไป"],["I [[heard her singing]].","ฉันได้ยินเธอกำลังร้องเพลง"]],"V1 = เห็นทั้งเหตุการณ์ตั้งแต่ต้นจนจบ V-ing = เห็นหรือได้ยินแค่ช่วงที่กำลังเกิด"],
+["have / get ให้คนอื่นทำ","have + ของ + V3 · have + คน + V1 · get + คน + to V",[["I [[had my hair cut]].","ฉันไปตัดผมมา (ให้ช่างตัด)"],["I [[got him to fix]] my car.","ฉันให้เขาซ่อมรถให้"]],"ผมถูกตัด จึงใช้ V3 (cut) ส่วนถ้าบอกว่าให้ใครทำ get ใช้ to V แต่ have ใช้ V1"],
+["had better / would rather","had better / would rather + V1",[["You [[had better go]] now.","คุณควรไปได้แล้ว"],["I [[would rather stay]] home.","ฉันอยากอยู่บ้านมากกว่า"]],"ทั้งสองตามด้วย V1 ไม่มี to had better = ควร (เตือน) would rather = อยากจะ…มากกว่า"],
+["tell vs say","tell + คน · say + (that) / say + to + คน",[["He [[told me]] the truth.","เขาบอกความจริงกับฉัน"],["She [[said that]] she was tired.","เธอบอกว่าเธอเหนื่อย"]],"tell ต้องมีคนตามหลังทันที ส่วน say ไม่ตามด้วยคนตรง ๆ (said me ผิด ต้องเป็น said to me)"],
+["let vs leave","let = อนุญาต · leave = ออกไป / ทิ้งไว้",[["They [[let him leave]] early.","พวกเขาอนุญาตให้เขากลับก่อน"],["Please don't [[leave]] your bag here.","กรุณาอย่าทิ้งกระเป๋าไว้ที่นี่"]],"let แปลว่าอนุญาตให้ทำ ตามด้วยกรรม + V1 ส่วน leave แปลว่าจากไปหรือวางทิ้งไว้"],
+["make vs do","make + decision, mistake, money, profit, call, offer · do + homework, business, research, your best",[["We need to [[make a decision]].","เราต้องตัดสินใจ"],["I [[do my homework]] every night.","ฉันทำการบ้านทุกคืน"]],"make ใช้กับการสร้างหรือผลลัพธ์ใหม่ do ใช้กับงานหรือหน้าที่ ต้องจำเป็นคู่คำ"]
+]},
+{n:"ประธาน-กริยาสอดคล้อง",s:"ประธาน-กริยา",e:"SUBJECT-VERB AGREEMENT",k:[
+["หลักพื้นฐาน","ประธานเอกพจน์ + กริยาเอกพจน์ · พหูพจน์ + พหูพจน์",[["He [[works]] here.","เขาทำงานที่นี่"],["They [[work]] here.","พวกเขาทำงานที่นี่"]],"he เป็นเอกพจน์บุรุษที่ 3 กริยาต้องเติม s ส่วน they เป็นพหูพจน์ กริยาไม่เติม s"],
+["ประธานเป็น V-ing / ประโยค","V-ing / to V / What… / That… + กริยาเอกพจน์",[["[[Reading books is]] fun.","การอ่านหนังสือสนุก"],["[[What he said was]] true.","สิ่งที่เขาพูดเป็นความจริง"]],"ถึงจะมี books แต่ประธานจริงคือ reading (การอ่าน) ทั้งก้อนนับเป็นหนึ่ง จึงใช้ is"],
+["each / one of","each / every / one of + … + กริยาเอกพจน์",[["[[Each]] student [[has]] a laptop.","นักเรียนแต่ละคนมีแล็ปท็อป"],["[[One of]] my friends [[is]] a doctor.","เพื่อนคนหนึ่งของฉันเป็นหมอ"]],"ประธานจริงคือ one (หนึ่งคน) ไม่ใช่ friends จึงใช้ is"],
+["เงิน เวลา ระยะทาง","จำนวนเงิน / เวลา / ระยะทาง / น้ำหนัก + กริยาเอกพจน์",[["[[Ten dollars is]] enough.","สิบดอลลาร์ก็พอ"],["[[Two hours is]] a long time to wait.","สองชั่วโมงเป็นเวลารอที่นาน"]],"มองจำนวนทั้งหมดเป็นก้อนเดียว จึงใช้กริยาเอกพจน์ แม้ตัวนามจะเป็นพหูพจน์"],
+["as well as / together with","A + as well as / along with / together with + B → กริยาตาม A",[["The manager, [[as well as]] his staff, [[is]] here.","ผู้จัดการและพนักงานอยู่ที่นี่"],["The teacher, [[together with]] the students, [[is]] going.","ครูกับนักเรียนกำลังไป"]],"ส่วนที่ตามหลัง as well as เป็นแค่ส่วนเสริม ประธานจริงคือคำแรก (the manager) จึงใช้ is"],
+["either / neither ยืนเดี่ยว","either / neither (of) + กริยาเอกพจน์",[["[[Neither]] of them [[is]] ready.","ไม่มีใครพร้อมเลยสักคน"],["[[Either]] day [[is]] fine with me.","วันไหนก็ได้สำหรับฉัน"]],"either / neither หมายถึงทีละหนึ่งในสอง จึงเป็นเอกพจน์"],
+["everyone / nobody","everyone, someone, anyone, nobody, nothing + กริยาเอกพจน์",[["[[Everyone is]] happy.","ทุกคนมีความสุข"],["[[Nobody knows]] the answer.","ไม่มีใครรู้คำตอบ"]],"แม้ everyone จะแปลว่าทุกคน แต่ไวยากรณ์ถือเป็นเอกพจน์ (everyone are ผิด)"],
+["A and B","A and B / both A and B + กริยาพหูพจน์",[["Tom [[and]] Mary [[are]] friends.","ทอมกับแมรี่เป็นเพื่อนกัน"],["[[Both]] the manager [[and]] the staff [[agree]].","ทั้งผู้จัดการและพนักงานเห็นด้วย"]],"and รวมสองคนเข้าด้วยกัน จึงเป็นพหูพจน์ (ต่างจาก as well as ที่ไม่รวม)"],
+["the + adj / a couple of","the + adj / a group of / a couple of / many / several + กริยาพหูพจน์",[["[[The elderly need]] care.","ผู้สูงอายุต้องการการดูแล"],["[[A couple of]] men [[are]] waiting outside.","มีผู้ชายสองสามคนรออยู่ข้างนอก"]],"the elderly หมายถึงผู้สูงอายุทั้งกลุ่ม และ a couple of ก็หมายถึงหลายคน จึงใช้กริยาพหูพจน์"],
+["a number of vs the number of","A number of + พหูพจน์ → are · The number of + พหูพจน์ → is",[["[[A number of]] people [[are]] here.","มีคนจำนวนมากอยู่ที่นี่"],["[[The number of]] cars [[is]] growing.","จำนวนรถกำลังเพิ่มขึ้น"]],"a number of = many (หลาย) ประธานคือ people ส่วน the number of = จำนวน ประธานคือ number (หนึ่งตัวเลข)"],
+["some of / most of + นาม","some, most, half, all, a lot, the rest, none + of + นาม → กริยาตามนามนั้น",[["[[Some of the water is]] dirty.","น้ำบางส่วนสกปรก"],["[[Some of the books are]] new.","หนังสือบางเล่มใหม่"]],"คำบอกปริมาณกลุ่มนี้ไม่มีจำนวนของตัวเอง ต้องดูนามหลัง of: water นับไม่ได้ → is, books พหูพจน์ → are"],
+["either…or / neither…nor","กริยาตามคำที่อยู่ใกล้กริยามากที่สุด",[["Either Tom or [[his friends are]] coming.","ไม่ทอมก็เพื่อน ๆ ของเขาจะมา"],["Neither the students nor [[the teacher is]] here.","ทั้งนักเรียนและครูไม่อยู่ที่นี่"]],"ดูคำที่ติดกับกริยา: his friends (พหูพจน์) → are, the teacher (เอกพจน์) → is"],
+["There is / There are","There + be + นาม → be ตามนามข้างหลัง",[["[[There is]] a book on the table.","มีหนังสือหนึ่งเล่มบนโต๊ะ"],["[[There are]] two books on the table.","มีหนังสือสองเล่มบนโต๊ะ"]],"there ไม่ใช่ประธานจริง ประธานจริงคือนามที่ตามมา (a book / two books)"],
+["ตัดส่วนขยายออก","ประธาน + (of… / which… / in…) + กริยา",[["[[The box]] of apples [[is]] heavy.","กล่องใส่แอปเปิลหนัก"],["[[The people]] in this office [[are]] friendly.","คนในออฟฟิศนี้เป็นมิตร"]],"ตัดส่วนขยาย (of apples, in this office) ออก จะเห็นประธานจริง: the box → is, the people → are"],
+["บวก + ลบ","A, not B + กริยาตาม A (ฝั่งบวก)",[["The students, not the teacher, [[are]] here.","นักเรียนอยู่ที่นี่ ไม่ใช่ครู"],["The manager, not the workers, [[has]] decided.","ผู้จัดการเป็นคนตัดสินใจ ไม่ใช่คนงาน"]],"กริยาสอดคล้องกับฝั่งที่เป็นบวก (คนที่ทำจริง) ไม่ใช่ฝั่งที่มี not"]
+]},
+{n:"คำบุพบท",s:"บุพบท",e:"PREPOSITIONS",k:[
+["บุพบท + นาม / V-ing","บุพบท + นาม / สรรพนาม / V-ing (ห้ามตามด้วยประโยค)",[["He left [[without saying]] goodbye.","เขาออกไปโดยไม่บอกลา"],["Thank you [[for helping]] me.","ขอบคุณที่ช่วยฉัน"]],"หลังบุพบท (without, for) ต้องเป็นคำนามหรือ V-ing เท่านั้น"],
+["because of vs because","because of / due to / owing to + นาม · because / since / as + ประโยค",[["[[Because of]] the rain, we stayed home.","เพราะฝนตก เราจึงอยู่บ้าน"],["[[Because]] it rained, we stayed home.","เพราะฝนตก เราจึงอยู่บ้าน"]],"ดูหลังช่องว่าง: the rain เป็นนาม → because of ส่วน it rained มีประธาน + กริยา → because"],
+["despite vs although","despite / in spite of + นาม · although / even though + ประโยค",[["[[Despite]] the rain, we went out.","แม้ฝนตก เราก็ออกไปข้างนอก"],["[[Although]] it rained, we went out.","แม้ฝนตก เราก็ออกไปข้างนอก"]],"หลักเดียวกับ because of / because ถ้าตามด้วยนามใช้ despite ถ้าตามด้วยประโยคใช้ although (despite of ผิด)"],
+["between vs among","between = ระหว่างสองสิ่ง · among = ท่ามกลางสามขึ้นไป",[["Sit [[between]] Tom and Ann.","นั่งระหว่างทอมกับแอน"],["The prize was shared [[among]] five winners.","เงินรางวัลถูกแบ่งให้ผู้ชนะห้าคน"]],"สองคน (Tom and Ann) ใช้ between กลุ่มหลายคน (five winners) ใช้ among"],
+["beside vs besides","beside = ข้าง ๆ · besides = นอกจากนี้",[["She sat [[beside]] me.","เธอนั่งข้างฉัน"],["[[Besides]] English, he speaks Thai.","นอกจากภาษาอังกฤษ เขายังพูดภาษาไทยได้"]],"เติม s แล้วความหมายเปลี่ยน beside บอกตำแหน่ง besides บอกการเพิ่มเติม"],
+["during / for / while","during + นาม (เมื่อไร) · for + ช่วงเวลา (นานแค่ไหน) · while + ประโยค",[["I fell asleep [[during]] the movie.","ฉันหลับระหว่างดูหนัง"],["I slept [[for]] two hours.","ฉันนอนไปสองชั่วโมง"]],"during บอกว่าเกิดช่วงไหน for บอกว่านานเท่าไร ส่วน while ต้องตามด้วยประโยค (while I was watching)"],
+["like vs as","like = เหมือน (+ นาม) · as = ในฐานะ / อย่างที่ (+ ประโยค)",[["She sings [[like]] a bird.","เธอร้องเพลงเหมือนนก"],["He works [[as]] a teacher.","เขาทำงานเป็นครู"]],"like คือเปรียบเทียบว่าคล้าย (ไม่ใช่นกจริง) ส่วน as คือเป็นจริง ๆ (เขาเป็นครูจริง)"],
+["by vs until","by = ภายใน (เส้นตาย) · until = จนถึง (ต่อเนื่อง)",[["Send the report [[by]] Friday.","ส่งรายงานภายในวันศุกร์"],["The shop is open [[until]] 9 p.m.","ร้านเปิดจนถึงสามทุ่ม"]],"by = ทำให้เสร็จก่อนหรือตรงเวลานั้น until = สภาพต่อเนื่องไปเรื่อย ๆ จนถึงเวลานั้น"],
+["in / on / at — เวลา","at + เวลา / เทศกาล · on + วัน / วันที่ · in + เดือน / ปี / ฤดู / ช่วงเช้า",[["The meeting is [[at]] 9 a.m. [[on]] Monday.","ประชุมเก้าโมงเช้าวันจันทร์"],["I was born [[in]] July.","ฉันเกิดเดือนกรกฎาคม"]],"จำจากเล็กไปใหญ่: at = จุดเวลา on = วัน in = ช่วงเวลายาว"],
+["in / on / at — สถานที่","at = จุด · on = พื้นผิว ถนน ชั้น ยานพาหนะใหญ่ · in = ภายใน เมือง ประเทศ",[["Meet me [[at]] the bus stop.","เจอกันที่ป้ายรถเมล์"],["My office is [[on]] the third floor [[in]] this building.","ออฟฟิศฉันอยู่ชั้นสามในตึกนี้"]],"at ใช้กับจุดที่นัดพบ on ใช้กับชั้น / พื้นผิว in ใช้กับสิ่งที่มีขอบเขตล้อมรอบ (ตึก ห้อง เมือง)"],
+["on time vs in time","on time = ตรงเวลา · in time = ทันเวลา",[["The train left [[on time]].","รถไฟออกตรงเวลา"],["We arrived [[in time]] for dinner.","เรามาทันมื้อเย็น"]],"on time = ตามกำหนดพอดี in time = ไม่สายเกินไป ทันก่อนบางอย่างจะเริ่ม"],
+["สำนวนบุพบท","in cash · by card · by mistake · on purpose · in advance · on holiday · for sale",[["I paid [[in cash]].","ฉันจ่ายเป็นเงินสด"],["He broke it [[by mistake]].","เขาทำมันพังโดยไม่ได้ตั้งใจ"]],"สำนวนเหล่านี้ใช้บุพบทตายตัว ต้องจำทั้งวลี (pay by cash, on mistake ผิด)"],
+["บุพบทหลายคำ","according to · instead of · in addition to · due to · prior to · regardless of",[["[[According to]] the news, it will rain.","ตามข่าว ฝนจะตก"],["I drank tea [[instead of]] coffee.","ฉันดื่มชาแทนกาแฟ"]],"วลีเหล่านี้ทำหน้าที่เป็นบุพบทหนึ่งตัว จึงตามด้วยนามหรือ V-ing"],
+["บุพบทบอกทิศทาง","across ข้าม · through ทะลุผ่าน · along ไปตาม · over ข้ามเหนือ · into เข้าไปใน",[["He walked [[across]] the street.","เขาเดินข้ามถนน"],["The train went [[through]] the tunnel.","รถไฟวิ่งผ่านอุโมงค์"]],"across = จากฝั่งหนึ่งไปอีกฝั่งบนพื้นผิว through = ผ่านเข้าไปข้างในแล้วออกอีกด้าน"],
+["in the end vs at the end","in the end = ในที่สุด · at the end (of) = ตอนท้ายของ",[["[[In the end]], we won the deal.","ในที่สุด เราก็ได้ดีลนี้"],["Sign [[at the end]] of the page.","เซ็นชื่อที่ท้ายหน้า"]],"in the end สรุปผลลัพธ์สุดท้าย ส่วน at the end of บอกตำแหน่งหรือช่วงท้ายของบางอย่าง"]
+]},
+{n:"โครงสร้างประโยค",s:"โครงสร้างประโยค",e:"SENTENCE STRUCTURE",k:[
+["ลำดับคำในประโยค","ประธาน + กริยา + กรรม + อย่างไร + ที่ไหน + เมื่อไร",[["She sang [[beautifully]] [[at the party]] [[last night]].","เธอร้องเพลงไพเราะที่งานเลี้ยงเมื่อคืน"],["We met [[at the hotel]] [[yesterday]].","เราเจอกันที่โรงแรมเมื่อวาน"]],"ส่วนขยายท้ายประโยคเรียงตามลำดับ อย่างไร → ที่ไหน → เมื่อไร (คำบอกเวลาย้ายไปต้นประโยคได้)"],
+["Parallel structure","รายการที่เรียงกันต้องเป็นชนิดเดียวกัน",[["I like [[swimming]], [[running]], and [[reading]].","ฉันชอบว่ายน้ำ วิ่ง และอ่านหนังสือ"],["She is [[smart]] and [[kind]].","เธอฉลาดและใจดี"]],"swimming, running ต้องตามด้วย reading (V-ing เหมือนกัน) ไม่ใช่ to read หรือ reads"],
+["คู่เชื่อมขนาน","both…and · not only…but also · either…or · neither…nor",[["He is [[not only]] smart [[but also]] kind.","เขาไม่เพียงฉลาดแต่ยังใจดีด้วย"],["You can pay [[either]] by cash [[or]] by card.","คุณจ่ายได้ทั้งเงินสดหรือบัตร"]],"คำเชื่อมคู่ต้องใช้ให้ครบคู่ และสิ่งที่ตามหลังทั้งสองฝั่งต้องเป็นชนิดเดียวกัน (smart / kind, by cash / by card)"],
+["that of / those of","เปรียบเทียบ: than + that of (เอกพจน์) / those of (พหูพจน์)",[["The price of gold is higher than [[that of]] silver.","ราคาทองสูงกว่าราคาเงิน"],["Our prices are lower than [[those of]] our rivals.","ราคาของเราต่ำกว่าราคาของคู่แข่ง"]],"ต้องเปรียบเทียบของชนิดเดียวกัน (ราคากับราคา) จึงใช้ that / those แทนคำนามที่ซ้ำ"],
+["ตัวเลขธรรมดา vs ลำดับที่","นาม + เลข (gate 4) · the + ลำดับที่ + นาม · the first two + นาม",[["Please go to [[gate four]].","กรุณาไปที่ประตูสี่"],["We train new staff for [[the first two weeks]].","เราฝึกพนักงานใหม่ในสองสัปดาห์แรก"]],"เลขหลังนามไม่ต้องมี the ส่วนลำดับที่ใช้ the และวางลำดับที่ก่อนจำนวนเสมอ (the two first ผิด)"],
+["Question tags","บอกเล่า → tag ปฏิเสธ · ปฏิเสธ → tag บอกเล่า",[["You are tired, [[aren't you]]?","คุณเหนื่อยใช่ไหม"],["He can't swim, [[can he]]?","เขาว่ายน้ำไม่เป็นใช่ไหม"]],"tag ใช้กริยาช่วยตัวเดียวกับประโยคหลักแต่กลับบวกเป็นลบ และใช้สรรพนามตรงกับประธาน"],
+["ประโยคคำถาม","(Wh-) + กริยาช่วย + ประธาน + กริยา · Who / What เป็นประธาน → ไม่ต้องใช้ do",[["[[Where do you]] live?","คุณอาศัยอยู่ที่ไหน"],["[[Who called]] you?","ใครโทรหาคุณ"]],"ปกติคำถามต้องสลับกริยาช่วยมาไว้หน้าประธาน แต่ถ้า who เป็นคนทำเอง (ประธาน) ไม่ต้องใช้ did"],
+["คำถามซ้อน","ประโยคหลัก + Wh- + ประธาน + กริยา (ไม่สลับ)",[["Do you know [[where he lives]]?","คุณรู้ไหมว่าเขาอยู่ที่ไหน"],["I don't remember [[what her name is]].","ฉันจำไม่ได้ว่าเธอชื่ออะไร"]],"เมื่อคำถามอยู่ในประโยคอื่น ให้เรียงแบบประโยคบอกเล่า (where does he live, what is her name ผิด)"],
+["How + adj / adv","How + adj/adv + กริยาช่วย + ประธาน? · ในประโยคซ้อน: how + adj + ประธาน + กริยา",[["[[How far]] is the station?","สถานีไกลแค่ไหน"],["Tell me [[how long it takes]].","บอกฉันหน่อยว่าใช้เวลานานแค่ไหน"]],"How จับคู่กับ adj/adv ติดกันเสมอ (how far, how long) และในประโยคซ้อนเรียงแบบบอกเล่า"],
+["ละ if แล้วสลับ","Had / Should / Were + ประธาน + กริยา…",[["[[Had I known]], I would have come.","ถ้าฉันรู้ ฉันคงมาแล้ว"],["[[Should you]] need help, call me.","ถ้าต้องการความช่วยเหลือ โทรหาฉัน"]],"ตัด if ออกแล้วยกกริยาช่วย (had / should) มาไว้หน้าประธาน มีความหมายเหมือน If I had known / If you need"],
+["So do I / Neither can I","So + กริยาช่วย + ประธาน (บวก) · Neither / Nor + กริยาช่วย + ประธาน (ลบ)",[["I like tea. — [[So do I]].","ฉันชอบชา — ฉันก็เหมือนกัน"],["I can't swim. — [[Neither can I]].","ฉันว่ายน้ำไม่เป็น — ฉันก็ไม่เป็น"]],"ใช้กริยาช่วยตามประโยคแรก (like → do, can't → can) และสลับมาไว้หน้าประธาน"],
+["คำปฏิเสธขึ้นต้น","Never / Rarely / Under no circumstances + กริยาช่วย + ประธาน",[["[[Never have I]] seen such a view.","ฉันไม่เคยเห็นวิวแบบนี้มาก่อนเลย"],["[[Under no circumstances can]] you smoke here.","ห้ามสูบบุหรี่ที่นี่ไม่ว่ากรณีใด"]],"ยกคำปฏิเสธขึ้นต้นเพื่อเน้น แล้วต้องสลับกริยาช่วยมาไว้หน้าประธานเหมือนประโยคคำถาม"],
+["คำเชื่อม + ประโยค","because, although, unless, so that, whereas, while, as if + ประธาน + กริยา",[["I stayed home [[because]] I was sick.","ฉันอยู่บ้านเพราะไม่สบาย"],["She works hard [[so that]] she can buy a house.","เธอทำงานหนักเพื่อจะได้ซื้อบ้าน"]],"คำเชื่อมใช้ต่อสองประโยค จึงต้องมีประธาน + กริยาตามหลังเสมอ"],
+["no longer / any more","no longer + กริยา · not … any more (ท้ายประโยค)",[["He [[no longer]] works here.","เขาไม่ได้ทำงานที่นี่แล้ว"],["He doesn't work here [[any more]].","เขาไม่ได้ทำงานที่นี่แล้ว"]],"ความหมายเดียวกัน no longer วางหน้ากริยาหลัก ส่วน any more ใช้กับ not และวางท้ายประโยค"],
+["คำเชื่อมความ (Part 6)","However ขัดแย้ง · Moreover เพิ่มเติม · Therefore ผลลัพธ์ · In other words ขยาย · In short สรุป",[["It's cheap. [[However]], it's slow.","มันราคาถูก แต่ช้า"],["It rained. [[Therefore]], we stayed in.","ฝนตก เราจึงอยู่ในบ้าน"]],"ดูความสัมพันธ์ของสองประโยค ขัดกัน → However เป็นเหตุผล → Therefore เพิ่มข้อมูล → Moreover"],
+["2 กริยา ต้องมีตัวเชื่อม","ประโยค + who / which / and / but / because + ประโยค",[["The man [[who]] lives next door [[is]] a doctor.","ผู้ชายที่อยู่บ้านข้าง ๆ เป็นหมอ"],["I called, [[but]] nobody answered.","ฉันโทรไปแต่ไม่มีใครรับ"]],"ประโยคเดียวมีกริยาแท้ได้ตัวเดียว ถ้ามีสองตัว (lives, is) ต้องมีคำเชื่อมหรือ who / which คั่นเสมอ"]
+]},
+{n:"อังกฤษ vs อเมริกัน",s:"อังกฤษ-อเมริกัน",e:"BRITISH vs AMERICAN",k:[
+["Present perfect vs Past","UK: have just + V3 · US: just + V2",[["I [[have just eaten]]. (UK)","ฉันเพิ่งกินเสร็จ"],["I [[just ate]]. (US)","ฉันเพิ่งกินเสร็จ"]],"ความหมายเหมือนกัน อังกฤษนิยม present perfect กับ just / already ส่วนอเมริกันใช้ past simple ได้"],
+["have got vs have","UK: Have you got…? · US: Do you have…?",[["[[Have you got]] a pen? (UK)","คุณมีปากกาไหม"],["[[Do you have]] a pen? (US)","คุณมีปากกาไหม"]],"ทั้งสองแบบแปลว่า 'มี' ใช้ได้ทั้งคู่ใน TOEIC แต่ห้ามผสมกัน (Do you have got ผิด)"],
+["Subjunctive / gotten","UK: that he should come · got · US: that he come · gotten",[["It's important that he [[should come]]. (UK)","สำคัญที่เขาต้องมา"],["It's important that he [[come]]. (US)","สำคัญที่เขาต้องมา"]],"อเมริกันใช้ V1 ล้วน อังกฤษเติม should ได้ และช่อง 3 ของ get: UK = got, US = gotten"],
+["การสะกด","-our/-or · -tre/-ter · -ise/-ize · -ence/-ense · programme/program",[["My favourite [[colour]] is blue. (UK)","สีที่ฉันชอบคือสีน้ำเงิน"],["My favorite [[color]] is blue. (US)","สีที่ฉันชอบคือสีน้ำเงิน"]],"เป็นคำเดียวกันแต่สะกดต่างกัน ไม่ใช่คำผิด เจอทั้งสองแบบในข้อสอบได้"],
+["คำศัพท์ต่างกัน","flat/apartment · lift/elevator · CV/resume · holiday/vacation · petrol/gas",[["I live in a [[flat]]. (UK)","ฉันอาศัยอยู่ในอพาร์ตเมนต์"],["I live in an [[apartment]]. (US)","ฉันอาศัยอยู่ในอพาร์ตเมนต์"]],"ความหมายเหมือนกันแต่ใช้คำต่างกัน รู้ไว้เพื่อไม่สับสนเวลาอ่านหรือฟัง"]
+]}
+];
+
+(function(){
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+  function hl(s){return esc(s).replace(/\[\[(.+?)\]\]/g,"<mark>$1</mark>")}
+  var total=0;C.forEach(function(c){total+=c.k.length});
+  document.getElementById("stats").innerHTML='<div class="stat"><b>'+C.length+'</b><span>หมวด</span></div><div class="stat"><b>'+total+'</b><span>เรื่อง</span></div><div class="stat"><b>'+(total*2)+'</b><span>ประโยคตัวอย่าง</span></div>';
+
+  // overview map
+  var W=1000,H=560,cx=500,cy=280,rx=372,ry=212,svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="แผนผังภาพรวม 9 หมวด"><g class="lnk">',nodes='',grid='<div class="hubm">TOEIC Grammar</div>';
+  C.forEach(function(c,i){
+    var a=(-90+i*40)*Math.PI/180,x=cx+rx*Math.cos(a),y=cy+ry*Math.sin(a),col="var(--c"+(i+1)+")";
+    var mx=(cx+x)/2+(y-cy)*0.12,my=(cy+y)/2-(x-cx)*0.12;
+    svg+='<path d="M'+cx+' '+cy+' Q'+mx.toFixed(1)+' '+my.toFixed(1)+' '+x.toFixed(1)+' '+y.toFixed(1)+'" style="stroke:'+col+'"/>';
+    nodes+='<a href="#ch'+(i+1)+'"><rect x="'+(x-104).toFixed(1)+'" y="'+(y-34).toFixed(1)+'" width="208" height="68" rx="14" style="stroke:'+col+'"/>'+
+      '<text class="n1" x="'+(x-90).toFixed(1)+'" y="'+(y-11).toFixed(1)+'" style="fill:'+col+'">บท '+(i+1)+'</text>'+
+      '<text class="n3" x="'+(x+90).toFixed(1)+'" y="'+(y-11).toFixed(1)+'" text-anchor="end">'+c.k.length+' เรื่อง</text>'+
+      '<text class="n2" x="'+(x-90).toFixed(1)+'" y="'+(y+18).toFixed(1)+'">'+esc(c.s)+'</text></a>';
+    grid+='<a href="#ch'+(i+1)+'" style="--c:'+col+'"><small>บท '+(i+1)+'</small><b>'+esc(c.s)+'</b><span>'+c.k.length+' เรื่อง</span></a>';
+  });
+  svg+='</g><circle class="hub" cx="'+cx+'" cy="'+cy+'" r="84"/><text class="hubt" x="'+cx+'" y="'+(cy-6)+'" text-anchor="middle" font-size="24">TOEIC</text><text class="hubt" x="'+cx+'" y="'+(cy+24)+'" text-anchor="middle" font-size="20">Grammar</text>'+nodes+'</svg>';
+  document.getElementById("map").innerHTML=svg+'<div class="mapgrid">'+grid+'</div>';
+
+  // chapters
+  var out='';
+  C.forEach(function(c,i){
+    var n=i+1,col="var(--c"+n+")";
+    out+='<section class="chapter" id="ch'+n+'" style="--c:'+col+'"><div class="branch"><div class="node"><small>บทที่ '+n+' · '+c.k.length+' เรื่อง</small><h2>'+esc(c.n)+'</h2><div class="en">'+esc(c.e)+'</div></div><ul class="leaves">';
+    c.k.forEach(function(k,j){out+='<li><button type="button" data-go="c'+n+'-'+(j+1)+'"><b>'+n+'.'+(j+1)+'</b>'+esc(k[0])+'</button></li>'});
+    out+='</ul></div><div class="tools"><button type="button" data-all="'+n+'">พลิกทุกการ์ดในบทนี้</button></div><div class="deck">';
+    c.k.forEach(function(k,j){
+      var id='c'+n+'-'+(j+1),tg='<span>'+n+'.'+(j+1)+'</span><span>'+esc(c.e)+'</span>';
+      out+='<article class="card" id="'+id+'" tabindex="0" role="button" aria-pressed="false" aria-label="'+esc(k[0])+' กดเพื่อพลิกดูเหตุผล"><div class="inner">'+
+        '<div class="face front"><div class="tag">'+tg+'</div><h3>'+esc(k[0])+'</h3><ul class="sent">'+
+        k[2].map(function(s,x){return '<li><i>'+(x+1)+'</i><div><span class="e">'+hl(s[0])+'</span><span class="t">'+esc(s[1])+'</span></div></li>'}).join('')+
+        '</ul><div class="hint">↻ กดเพื่อดูว่าทำไม</div></div>'+
+        '<div class="face back" aria-hidden="true"><div class="tag">'+tg+'</div><h3>ทำไมต้องเป็นแบบนี้?</h3><div class="formula">'+esc(k[1])+'</div><p>'+esc(k[3])+'</p><div class="hint">↻ กดเพื่อกลับไปดูประโยค</div></div>'+
+        '</div></article>';
+    });
+    out+='</div></section>';
+  });
+  document.getElementById("chapters").innerHTML=out;
+
+  // tabs
+  var tabs=document.getElementById("tabs"),th='';
+  C.forEach(function(c,i){var n=i+1;th+='<button type="button" class="tab" role="tab" id="tab'+n+'" aria-controls="ch'+n+'" data-tab="'+n+'" style="--c:var(--c'+n+')"><span class="ic">'+IC[i]+'</span><span class="lb">'+esc(c.s)+'</span><span class="ct">'+c.k.length+' เรื่อง</span></button>'});
+  tabs.innerHTML=th;
+  C.forEach(function(c,i){var n=i+1,sec=document.getElementById("ch"+n),p='<div class="pager">';
+    sec.setAttribute("role","tabpanel");sec.setAttribute("aria-labelledby","tab"+n);
+    if(n>1)p+='<button type="button" data-tab="'+(n-1)+'" data-top="1">← บทที่ '+(n-1)+' '+esc(C[n-2].s)+'</button>';
+    if(n<C.length)p+='<button type="button" class="nx" data-tab="'+(n+1)+'" data-top="1">บทที่ '+(n+1)+' '+esc(C[n].s)+' →</button>';
+    sec.insertAdjacentHTML("beforeend",p+'</div>');});
+  function show(n,toTop){
+    for(var i=1;i<=C.length;i++){document.getElementById("ch"+i).hidden=(i!==n);var t=document.getElementById("tab"+i);t.setAttribute("aria-selected",i===n?"true":"false");t.tabIndex=i===n?0:-1;}
+    document.getElementById("tab"+n).scrollIntoView({block:"nearest",inline:"center"});
+    try{localStorage.setItem("tg-tab",n)}catch(e){}
+    if(toTop){var y=tabs.getBoundingClientRect().top+window.scrollY-4;window.scrollTo({top:y});}
+  }
+  var start=1,h=/^#ch(\d)$/.exec(location.hash);
+  if(h)start=+h[1];else{try{var s=+localStorage.getItem("tg-tab");if(s>=1&&s<=C.length)start=s}catch(e){}}
+  show(start,false);
+  document.addEventListener("click",function(e){
+    var t=e.target.closest("[data-tab]");if(t){show(+t.dataset.tab,!!t.dataset.top||!t.classList.contains("tab")?true:false);return;}
+    var a=e.target.closest('a[href^="#ch"]');if(a){e.preventDefault();show(+a.getAttribute("href").slice(3),true);}
+  });
+  tabs.addEventListener("keydown",function(e){var cur=+document.activeElement.dataset.tab;if(!cur)return;var n=e.key==="ArrowRight"?cur+1:e.key==="ArrowLeft"?cur-1:0;if(n>=1&&n<=C.length){e.preventDefault();show(n,false);document.getElementById("tab"+n).focus();}});
+
+  function setFlip(card,on){card.classList.toggle("flip",on);card.setAttribute("aria-pressed",on?"true":"false");card.querySelector(".front").setAttribute("aria-hidden",on?"true":"false");card.querySelector(".back").setAttribute("aria-hidden",on?"false":"true");}
+  document.addEventListener("click",function(e){
+    var g=e.target.closest("[data-go]");
+    if(g){var t=document.getElementById(g.dataset.go);t.scrollIntoView({block:"center"});t.focus({preventScroll:true});t.classList.add("ping");setTimeout(function(){t.classList.remove("ping")},1400);return;}
+    var a=e.target.closest("[data-all]");
+    if(a){var cards=document.querySelectorAll("#ch"+a.dataset.all+" .card"),any=[].some.call(cards,function(c){return !c.classList.contains("flip")});cards.forEach(function(c){setFlip(c,any)});a.textContent=any?"พลิกกลับทั้งหมด":"พลิกทุกการ์ดในบทนี้";return;}
+    var c=e.target.closest(".card");if(c)setFlip(c,!c.classList.contains("flip"));
+  });
+  document.addEventListener("keydown",function(e){var c=e.target.closest&&e.target.closest(".card");if(c&&(e.key==="Enter"||e.key===" ")){e.preventDefault();setFlip(c,!c.classList.contains("flip"));}});
+})();
+</script>
+<script>
+(function(){
+  // ปุ่มติดตั้งแอป (Android / Chrome / Edge)
+  var hd=document.querySelector("header.top"),btn=document.createElement("button");
+  btn.type="button";btn.className="install";btn.hidden=true;btn.textContent="＋ ติดตั้งเป็นแอป";hd.appendChild(btn);
+  var ev=null;
+  window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=e;btn.hidden=false;});
+  btn.addEventListener("click",function(){if(!ev)return;ev.prompt();ev.userChoice.finally(function(){ev=null;btn.hidden=true;});});
+  window.addEventListener("appinstalled",function(){btn.hidden=true;});
+  // service worker สำหรับใช้งานออฟไลน์
+  if("serviceWorker" in navigator&&location.protocol!=="file:"){
+    window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});
+  }
+})();
+</script>
+</body>
+</html>
